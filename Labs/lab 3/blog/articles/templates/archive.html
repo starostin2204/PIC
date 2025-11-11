@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Архив статей</title>
+</head>
+<body>
+
+    <div class="header">
+        <img src="{% static 'img/logo.png' %}" alt="Логотип проекта" />
+        <h1>Архив статей проекта Blog</h1>
+    </div>
+
+    <div class="archive">
+        
+        {% for post in posts %}
+        <div class="one-post">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="article-info">
+                <div class="article-author">Автор: {{ post.author.username }}</div>
+                <div class="article-created-date">Дата: {{ post.created_date }}</div>
+            </div>
+            <p class="article-text">{{ post.get_excerpt }}</p>
+        </div>
+        <hr>
+        {% endfor %} {% if not posts %}
+        <p>На данный момент статьи отсутствуют.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
